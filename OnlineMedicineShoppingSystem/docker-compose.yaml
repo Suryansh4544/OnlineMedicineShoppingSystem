@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   API:
-    image: 'suryansh4544/onlinemedicineshoppingsystem'
+    image: 'onlinemedicineshoppingsystem'
     ports:
       - "8080:8080"
     depends_on:
@@ -14,7 +14,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   PostgreSQL:
-    image: postgres
+    image: postgres:13.4-buster
     ports:
       - "5432:5432"
     environment:
