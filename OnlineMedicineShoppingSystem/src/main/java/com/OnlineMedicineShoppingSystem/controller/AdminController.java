@@ -137,4 +137,17 @@ public class AdminController {
         });
         return errors;
     }
+    @PostMapping("/register")
+    public ResponseEntity<String> register( @RequestBody @Valid Admin a){
+        try{
+            if(login_status==true)
+            return new ResponseEntity<String>("Logout to register",HttpStatus.CONFLICT);
+
+            if(adminService.saveAdmin(a))
+            return new ResponseEntity<String>("Register Successfull",HttpStatus.ACCEPTED);
+
+            return new ResponseEntity<String>("Register UnSuccessfull, Admin id already exsist",HttpStatus.CONFLICT);
+        }
+        catch(Exception e){return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);}
+    }
 }
